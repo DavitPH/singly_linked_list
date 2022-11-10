@@ -33,6 +33,17 @@ namespace singly_linked_list
             nodeBaru.noMhs = nim;
             nodeBaru.nama = nm;
 
+            //Node ditambahkan sebagai node pertama
+            if (START == null || nim <= START.noMhs)
+            {
+                if ((START != null) && (nim == START.noMhs))
+                {
+                    Console.WriteLine("\nNomer mahasiswa sama tidak diizinkan ");
+                }
+                nodeBaru.next = START;
+                START = nodeBaru;
+                return;
+            }
         }
 
     }
