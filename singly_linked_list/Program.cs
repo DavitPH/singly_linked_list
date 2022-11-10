@@ -24,9 +24,9 @@ namespace singly_linked_list
         {
             int nim;
             string nm;
-            Console.WriteLine("\nMasukan nomer Mahasiswa: ");
+            Console.WriteLine("\nMasukan nomer Mahasiswa: \n");
             nim = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("\nMasukan nama Mahasiswa: ");
+            Console.WriteLine("\nMasukan nama Mahasiswa: \n");
             nm = Console.ReadLine();
 
             Node nodeBaru = new Node();
@@ -38,7 +38,7 @@ namespace singly_linked_list
             {
                 if ((START != null) && (nim == START.noMhs))
                 {
-                    Console.WriteLine("\nNomer mahasiswa sama tidak diizinkan ");
+                    Console.WriteLine("\nNomer mahasiswa sama tidak diizinkan \n");
                 }
                 nodeBaru.next = START;
                 START = nodeBaru;
@@ -53,7 +53,7 @@ namespace singly_linked_list
             {
                 if (nim == current.noMhs)
                 {
-                    Console.WriteLine("\nNomer mahasiswa sama tidak diizinkan");
+                    Console.WriteLine("\nNomer mahasiswa sama tidak diizinkan\n");
                     return;
                 }
                 previous = current;
@@ -100,7 +100,7 @@ namespace singly_linked_list
                 Console.WriteLine("\nList kosong: ");
             else
             {
-                Console.WriteLine("\nData di dalam list adalah: ");
+                Console.WriteLine("\nData di dalam list adalah: \n");
                 Node currentNode;
                 for (currentNode = START; currentNode != null; currentNode = currentNode.next)
                     Console.Write(currentNode.noMhs + " " + currentNode.nama + "\n");
@@ -131,9 +131,72 @@ namespace singly_linked_list
                     Console.WriteLine("2. Menghapus data dari dalam list");
                     Console.WriteLine("3. Melihat semua data di dalam list");
                     Console.WriteLine("4. Mencari sebuah data di dalam list");
-                    Console.WriteLine("5. Mencari data di dalam list");
+                    Console.WriteLine("5. Exit");
                     Console.WriteLine("\nMasukan Pilihan Anda (1-5): ");
                     char ch = Convert.ToChar(Console.ReadLine());
+                    switch (ch)
+                    {
+                        case '1':
+                            {
+                                obj.addNote();
+                            }
+                            break;
+                        case '2':
+                            {
+                                if (obj.listEmpty())
+                                {
+                                    Console.WriteLine("\nList Kosong");
+                                    break;
+                                }
+                                Console.Write("\nMasukan Nomer Mahasiswa yang akan dihapus: ");
+                                int nim = Convert.ToInt32(Console.ReadLine());
+                                Console.WriteLine("");
+                                if (obj.delNode (nim) == false)
+                                    Console.WriteLine("\nData tidak ditemukan");
+                                else
+                                    Console.WriteLine("Data dengan Nomer " + nim + "Dihapus");
+                            }
+                            break;
+                        case '3':
+                            {
+                                obj.treverse();
+                            }
+                            break;
+                        case '4':
+                            {
+                                if( obj.listEmpty()== true) 
+                                {
+                                    Console.WriteLine("\nList Kosong");
+                                    break;
+                                }
+                                Node previous, current;
+                                previous = current = null;
+                                Console.Write("\nMasukan nomer mahasiswa yang dicari: ");
+                                int num = Convert.ToInt32(Console.ReadLine());
+                                if (obj.Search(num, ref previous, ref current) == false)
+                                    Console.WriteLine("\nData tidak ditemukan");
+                                else
+                                {
+                                    Console.WriteLine("\nData Ketemu");
+                                    Console.WriteLine("\nNomer Mahasiswa: " + current.noMhs);
+                                    Console.WriteLine("\nNama: " + current.nama);
+                                    
+                                }
+
+                            }
+                            break;
+                        case '5':                      
+                                return;
+                        default:
+                            {
+                                Console.WriteLine("Pilihan tidak valid");
+                                break;
+                            }
+                    }
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("\nCheck nilai yang anda masuklan!");
                 }
             }
         }
