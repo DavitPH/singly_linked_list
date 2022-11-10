@@ -79,8 +79,21 @@ namespace singly_linked_list
                 return true;
             
         }
-      
-
+        //Method untuk meng-check apakah node yang dimaksud ada di dalam list atau tidak
+        public bool Search (int nim, ref Node previous, ref Node current)
+        {
+            previous = current;
+            while((current != null)&&(nim != current.noMhs))
+            {
+                previous = current;
+                current = current.next;
+            }
+            if (current == null)
+                return (false);
+            else
+                return (true);
+        }
+        
     }
     class Program
     {
