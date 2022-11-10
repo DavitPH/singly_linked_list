@@ -42,14 +42,14 @@ namespace singly_linked_list
                 }
                 nodeBaru.next = START;
                 START = nodeBaru;
-                return;
+                return; 
             }
             //Menemukan lokasi node baru didalam list
             Node previous, current;
             previous = START;
             current = START;
 
-            while ((current != null) && (nim >= current.noMhs))
+            while((current != null)&&(nim >= current.noMhs))
             {
                 if (nim == current.noMhs)
                 {
@@ -59,7 +59,12 @@ namespace singly_linked_list
                 previous = current;
                 current = current.next;
             }
+            //Node baru akan ditempatkan di antara previous dan current
+            nodeBaru.next = current;
+            previous.next = nodeBaru;
         }
+
+       
 
     }
     class Program
